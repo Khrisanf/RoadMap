@@ -12,3 +12,4 @@ public class RoadMapApplication {
 
 }
 // TODO: не забыть сделать чето для фоток
+// TODO: ФАЙЛЫ БД В ГИТИГНОР
