@@ -41,7 +41,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                         "Пользователь с id %d не найден. Сначала создайте профиль.".formatted(currentUserId)
                 ));
 
-        // A2: анкета отсутствует → вернём null, контроллер сможет отдать 204 No Content
+        // A2: анкета отсутствует → вернём null
         return questionnaireRepository.findByUserId(user.getId())
                 .map(responseMapper::toDto)
                 .orElse(null);
