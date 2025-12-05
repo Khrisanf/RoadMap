@@ -24,13 +24,21 @@ public class RoadMapStep {
     private RoadMap roadMap;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(length = 2000)
     private String description;
 
+    @Column(name = "deadline")
     private LocalDate deadline;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private StepStatus status;
+    private StepStatus status = StepStatus.PLANNED;
 
-    private String message;
+    @Column(name = "order_index")
+    private Integer orderIndex;
+
+    @Column(name = "rule_id")
+    private Long ruleId;
 }
