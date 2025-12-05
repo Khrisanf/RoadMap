@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoadMapController {
 
-    // Пока используем того же демо-пользователя, что и в QuestionnaireController
+    // data.sql
     private static final Long DEMO_USER_ID = 1L;
 
     private final RoadMapService roadMapService;

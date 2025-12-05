@@ -73,7 +73,6 @@ public class RoadMapServiceImpl implements RoadMapService {
                     .user(user)
                     .build();
         } else {
-            // очищаем старые шаги, orphanRemoval=true удалит их из БД
             existing.getSteps().clear();
             roadMap = existing;
         }
@@ -107,7 +106,6 @@ public class RoadMapServiceImpl implements RoadMapService {
                 ));
 
         if (updates == null || updates.isEmpty()) {
-            // ничего не меняем, просто возвращаем текущее состояние
             return roadMapMapper.toDto(roadMap);
         }
 

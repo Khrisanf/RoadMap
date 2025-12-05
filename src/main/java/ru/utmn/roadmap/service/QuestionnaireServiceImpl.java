@@ -88,7 +88,6 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
 
         // шаг 6: вернуть информацию об успешно сохранённой анкете
         return responseMapper.toDto(saved);
-        //TODO: GLOBAL ADVISER FOR CUSTOM EXCEPTIONS
         //TODO: ADD LOGS
     }
 }
