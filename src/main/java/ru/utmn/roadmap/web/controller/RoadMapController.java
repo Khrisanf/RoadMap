@@ -1,5 +1,6 @@
 package ru.utmn.roadmap.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/roadmap")
 @RequiredArgsConstructor
+@Tag(name = "RoadMap", description = "Просмотр и обновление дорожной карты (UC-02)")
 public class RoadMapController {
 
     // data.sql

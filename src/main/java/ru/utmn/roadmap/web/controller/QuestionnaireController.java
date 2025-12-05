@@ -1,5 +1,6 @@
 package ru.utmn.roadmap.web.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import ru.utmn.roadmap.web.dto.QuestionnaireResponseDto;
 @RestController
 @RequestMapping("/api/questionnaire")
 @RequiredArgsConstructor
+@Tag(name = "Questionnaire", description = "Работа с анкетой пользователя (UC-01)")
 public class QuestionnaireController {
 
     private final QuestionnaireService questionnaireService;
