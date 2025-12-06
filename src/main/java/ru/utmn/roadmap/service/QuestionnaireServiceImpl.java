@@ -25,41 +25,35 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     private final QuestionnaireResponseMapper responseMapper;
 
     /**
-     * UC-01: шаги 1–2 + A1 + A2.
+     * UC-01: шаги 1–2
      */
     @Override
     @Transactional(readOnly = true)
     public QuestionnaireResponseDto getQuestionnaireForUser(Long currentUserId) {
         if (currentUserId == null) {
-            // A3: пользователь не авторизован
             throw new IllegalStateException("Пользователь должен быть авторизован");
         }
 
-        // A1: профиль пользователя отсутствует
         User user = userRepository.findById(currentUserId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Пользователь с id %d не найден. Сначала создайте профиль.".formatted(currentUserId)
                 ));
 
-        // A2: анкета отсутствует → вернём null
         return questionnaireRepository.findByUserId(user.getId())
                 .map(responseMapper::toDto)
                 .orElse(null);
     }
 
     /**
-     * UC-01: шаги 3–6 + A1.
+     * UC-01: шаги 3–6
      */
     @Override
     @Transactional
     public QuestionnaireResponseDto saveQuestionnaireForUser(Long currentUserId,
                                                              QuestionnaireRequestDto requestDto) {
         if (currentUserId == null) {
-            // A3: пользователь не авторизован
             throw new IllegalStateException("Пользователь должен быть авторизован");
         }
-
-        // A1: профиль пользователя отсутствует
         User user = userRepository.findById(currentUserId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Пользователь с id %d не найден. Сначала создайте профиль.".formatted(currentUserId)

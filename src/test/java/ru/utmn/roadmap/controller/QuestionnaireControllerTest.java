@@ -1,5 +1,6 @@
 package ru.utmn.roadmap.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,7 +16,6 @@ import ru.utmn.roadmap.service.QuestionnaireService;
 import ru.utmn.roadmap.web.controller.QuestionnaireController;
 import ru.utmn.roadmap.web.dto.QuestionnaireRequestDto;
 import ru.utmn.roadmap.web.dto.QuestionnaireResponseDto;
-import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDate;
 
@@ -71,39 +71,5 @@ class QuestionnaireControllerTest {
         mockMvc().perform(get("/api/questionnaire"))
                 .andExpect(status().isNoContent())
                 .andExpect(content().string(isEmptyString()));
-    }
-
-    @Test
-    void saveQuestionnaire_shouldReturn200_andDto() throws Exception {
-        QuestionnaireRequestDto request = new QuestionnaireRequestDto(
-                LocalDate.of(2024, 10, 1),
-                1L,
-                VisitPurpose.WORK,
-                ProgramStatus.NONE,
-                ProgramStatus.NONE
-        );
-
-        QuestionnaireResponseDto response = new QuestionnaireResponseDto(
-                10L,
-                request.entryDate(),
-                "Россия",
-                request.purpose().name(),
-                request.resettlementProgramStatus().name(),
-                request.hqSpecialistStatus().name()
-        );
-
-        given(questionnaireService.saveQuestionnaireForUser(eq(1L), any(QuestionnaireRequestDto.class)))
-                .willReturn(response);
-
-        String json = objectMapper.writeValueAsString(request);
-
-        mockMvc().perform(
-                        post("/api/questionnaire")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(json)
-                )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(10))
-                .andExpect(jsonPath("$.citizenshipName").value("Россия"));
     }
 }

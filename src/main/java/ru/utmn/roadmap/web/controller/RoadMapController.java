@@ -22,7 +22,7 @@ public class RoadMapController {
     private final RoadMapService roadMapService;
 
     /**
-     * UC-02: шаги 1–4 + A1.
+     * UC-02: шаги 1–4
      *
      * GET /api/roadmap?forceRefresh=false
      *

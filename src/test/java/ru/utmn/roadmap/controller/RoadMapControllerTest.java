@@ -1,5 +1,6 @@
 package ru.utmn.roadmap.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +17,6 @@ import ru.utmn.roadmap.web.controller.RoadMapController;
 import ru.utmn.roadmap.web.dto.RoadMapResponseDto;
 import ru.utmn.roadmap.web.dto.RoadMapStepDto;
 import ru.utmn.roadmap.web.dto.StepStatusUpdateDto;
-import tools.jackson.databind.ObjectMapper;
 
 import java.time.LocalDate;
 import java.util.List;

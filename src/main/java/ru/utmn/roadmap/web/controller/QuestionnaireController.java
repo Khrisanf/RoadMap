@@ -21,7 +21,7 @@ public class QuestionnaireController {
     private static final Long DEMO_USER_ID = 1L;
 
     /**
-     * UC-01: шаги 1–2 + A2.
+     * UC-01: шаги
      * Получить анкету пользователя или пустой ответ, если анкета ещё не создавалась.
      */
     @GetMapping

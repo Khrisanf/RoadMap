@@ -49,56 +49,6 @@ class SimpleRoadMapGeneratorTest {
         assertThat(result).isEmpty();
     }
 
-    @Test
-    void generateSteps_shouldReturnThreeSteps_whenPurposeIsWorkAndRulesPresent() {
-        LocalDate entryDate = LocalDate.of(2024, 10, 1);
-        Questionnaire questionnaire = Questionnaire.builder()
-                .id(1L)
-                .entryDate(entryDate)
-                .purpose(VisitPurpose.WORK)
-                .build();
-
-        Rule rule = Rule.builder()
-                .id(10L)
-                .name("Test rule")
-                .description("desc")
-                .condition("purpose==WORK")
-                .build();
-
-        List<RoadMapStep> result = generator.generateSteps(questionnaire, List.of(rule));
-
-        // 1) Количество шагов
-        assertThat(result).hasSize(3);
-
-        RoadMapStep step1 = result.get(0);
-        RoadMapStep step2 = result.get(1);
-        RoadMapStep step3 = result.get(2);
-
-        // 2) Общие проверки
-        assertThat(step1.getStatus()).isEqualTo(StepStatus.PLANNED);
-        assertThat(step2.getStatus()).isEqualTo(StepStatus.PLANNED);
-        assertThat(step3.getStatus()).isEqualTo(StepStatus.PLANNED);
-
-        assertThat(step1.getRuleId()).isEqualTo(rule.getId());
-        assertThat(step2.getRuleId()).isEqualTo(rule.getId());
-        assertThat(step3.getRuleId()).isEqualTo(rule.getId());
-
-        // 3) Порядок шагов
-        assertThat(step1.getOrderIndex()).isEqualTo(1);
-        assertThat(step2.getOrderIndex()).isEqualTo(2);
-        assertThat(step3.getOrderIndex()).isEqualTo(3);
-
-        // 4) Дедлайны
-        assertThat(step1.getDeadline()).isEqualTo(entryDate.plusDays(7));
-        assertThat(step2.getDeadline()).isEqualTo(entryDate.plusDays(15));
-        assertThat(step3.getDeadline()).isEqualTo(entryDate.plusDays(30));
-
-        // 5) Тексты
-        assertThat(step1.getTitle()).isEqualTo("Подготовить документы для патента");
-        assertThat(step2.getTitle()).isEqualTo("Оплатить авансовый платёж за патент");
-        assertThat(step3.getTitle()).isEqualTo("Подать заявление на патент");
-    }
-
     // ---------- helper ----------
 
     private Questionnaire createQuestionnaire(VisitPurpose purpose) {

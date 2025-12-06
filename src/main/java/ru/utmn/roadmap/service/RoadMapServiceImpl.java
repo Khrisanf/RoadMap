@@ -26,17 +26,14 @@ public class RoadMapServiceImpl implements RoadMapService {
     private final RoadMapMapper roadMapMapper;
 
     /**
-     * UC-02: шаги 1–4 + A1.
+     * UC-02: шаги 1–4
      */
     @Override
     @Transactional
     public RoadMapResponseDto getRoadMapForUser(Long userId, boolean forceRefresh) {
         if (userId == null) {
-            // A3 из UC-01 переиспользуем: пользователь не авторизован
             throw new IllegalStateException("Пользователь должен быть авторизован");
         }
-
-        // проверим, что пользователь существует (аналог A1 UC-01)
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Пользователь с id %d не найден. Сначала создайте профиль.".formatted(userId)

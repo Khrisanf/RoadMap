@@ -6,13 +6,13 @@ import ru.utmn.roadmap.web.dto.QuestionnaireResponseDto;
 public interface QuestionnaireService {
 
     /**
-     * UC-01: шаги 1–2 + A1 + A2.
+     * UC-01: шаги 1–2
      * Вернуть анкету текущего пользователя или "пустой" ответ, если её ещё нет.
      */
     QuestionnaireResponseDto getQuestionnaireForUser(Long currentUserId);
 
     /**
-     * UC-01: шаги 3–6 + A1.
+     * UC-01: шаги 3–6
      * Сохранить/обновить анкету текущего пользователя.
      */
     QuestionnaireResponseDto saveQuestionnaireForUser(Long currentUserId,
